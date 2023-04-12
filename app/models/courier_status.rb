@@ -1,0 +1,2 @@
+class CourierStatus < ApplicationRecord
+end
