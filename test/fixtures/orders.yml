@@ -4,10 +4,12 @@ one:
   restaurant: one
   customer: one
   order_status: one
+  courier: one
   restaurant_rating: 1
 
 two:
   restaurant: two
   customer: two
   order_status: two
+  courier: two
   restaurant_rating: 1
