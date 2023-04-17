@@ -1,14 +1,15 @@
-# class ProductsControllerTest < ActionDispatch::IntegrationTest
+require "test_helper"
+class ProductsControllerTest < ActionDispatch::IntegrationTest
 
-#   test "products route exists and is a GET route" do
-#     assert_routing({ path: '/api/products', method: :get }, { controller: 'api/products', action: 'index' })
-#   end
+  test "products route exists and is a GET route" do
+    assert_routing({ path: '/api/products', method: :get }, { controller: 'api/products', action: 'index' })
+  end
 
-#   test "get products without restaurant parameter" do
-#     get "/api/products"
-#     assert_response :success
-#     assert_not_nil @controller.instance_variable_get(:@products)
-#   end
+  test "get products without restaurant parameter" do
+    get "/api/products"
+    assert_response :success
+    assert_not_nil @controller.instance_variable_get(:@products)
+  end
 
 #   test "get products with valid restaurant parameter" do
 #     user = User.create!(name: "Name 1", email: "test@test.com", password: "password")
@@ -24,10 +25,10 @@
 #                   {id: product2.id, name: product2.name, cost: product2.cost}].to_json, response.body
 #   end
 
-#   test "get products with invalid restaurant parameter" do
-#     get "/api/products", params: { restaurant: 999 }
-#     assert_response 422
-#     assert_equal({ error: "Invalid restaurant ID" }.to_json, response.body)
-#   end
+  test "get products with invalid restaurant parameter" do
+    get "/api/products", params: { restaurant: 999 }
+    assert_response 422
+    assert_equal({ error: "Invalid restaurant ID" }.to_json, response.body)
+  end
 
-# end
+end

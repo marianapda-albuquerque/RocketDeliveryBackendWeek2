@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_210336) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_13_163130) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_address", null: false
     t.string "city", null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_210336) do
     t.integer "restaurant_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "courier_id", default: 0
+    t.integer "courier_id"
     t.index ["courier_id"], name: "index_orders_on_courier_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
@@ -137,6 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_210336) do
   add_foreign_key "customers", "users"
   add_foreign_key "employees", "addresses"
   add_foreign_key "employees", "users"
+  add_foreign_key "orders", "couriers"
   add_foreign_key "orders", "couriers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "order_statuses"

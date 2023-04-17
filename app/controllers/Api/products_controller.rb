@@ -1,10 +1,49 @@
-class ProductsController < ApplicationController
+class Api::ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
+  # def index
+  #   if params[:restaurant].present?
+  #     restaurant = Restaurant.find_by(id: params[:restaurant])
+  #     if restaurant.present?
+  #       @products = restaurant.products
+  #     else
+  #       render json: { error: "Invalid restaurant ID" }, status: :unprocessable_entity
+  #       return
+  #     end
+  #   else
+  #     @products = Product.all
+  #   end
+  
+  #   render json: @products.to_json(
+  #     only: [:id, :name, :cost],
+  #     include: { 
+  #       restaurant: { 
+  #         only: [:name],
+  #         as: :restaurant
+  #       }
+  #     }
+  #   ), status: :ok
+
+  # end
+  
   def index
-    @products = Product.all
+    if params[:restaurant].present?
+      restaurant = Restaurant.find_by(id: params[:restaurant])
+      if restaurant.present?
+        @products = restaurant.products
+      else
+        render json: { error: "Invalid restaurant ID" }, status: :unprocessable_entity
+        return
+      end
+    else
+      @products = Product.all
+    end
+  
+    render json: @products.as_json(only: [:id, :name, :cost], include: { restaurant: { only: [:name] } }), status: :ok
   end
+  
+   
 
   # GET /products/1 or /products/1.json
   def show
